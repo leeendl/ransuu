@@ -1,11 +1,13 @@
 #include <time.h>
 
+// @param front, back
 struct shorts
 {
     short front{};
     short back{};
 };
 
+// @param operator[] provide range using shorts struct
 class ransuu
 {
     unsigned char m{1};
