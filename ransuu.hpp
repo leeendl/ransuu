@@ -1,6 +1,6 @@
 #include <array>
 #include <time.h>
-#include <bits\stl_algo.h>
+#include <limits.h>
 
 class ransuu
 {
@@ -8,6 +8,8 @@ class ransuu
     public:
     short operator[](std::array<short, 2> range) 
     {
-        return std::clamp<short>(static_cast<short>(time(nullptr) % (++m)), SHRT_MIN, SHRT_MAX) % range.back() + range.front();
+        short val = static_cast<short>(time(nullptr) % (++m));
+        (val < SHRT_MIN) ? val = SHRT_MIN : (SHRT_MAX < val) ? val = SHRT_MAX : val;
+        return val % range.back() + range.front();
     }
 };
