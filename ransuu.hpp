@@ -8,6 +8,6 @@ class ransuu
     public:
     short operator[](std::array<short, 2> range) 
     {
-        return std::clamp<short>(static_cast<short>(time(nullptr) % (++m)), 0, 32767) % range.back() + range.front();
+        return std::clamp<short>(static_cast<short>(time(nullptr) % (++m)), SHRT_MIN, SHRT_MAX) % range.back() + range.front();
     }
 };
