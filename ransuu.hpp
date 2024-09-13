@@ -1,6 +1,5 @@
 #include <array>
 #include <time.h>
-#include <limits.h>
 
 class ransuu
 {
@@ -9,7 +8,7 @@ class ransuu
     short operator[](std::array<short, 2> range) 
     {
         short val = static_cast<short>(time(nullptr) % (++m));
-        (val < SHRT_MIN) ? val = SHRT_MIN : (SHRT_MAX < val) ? val = SHRT_MAX : val;
-        return val % range.back() + range.front();
+        (val < (-0x7fff - 1)) ? val = (-0x7fff - 1) : (0x7fff < val) ? val = 0x7fff : val;
+        return val % (range.back() - range.front() + 1) + range.front();
     }
 };
