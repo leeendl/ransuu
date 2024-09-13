@@ -1,4 +1,4 @@
 ## including 
-```C++
+```c++
 #include "ransuu.hpp"
 ```
