@@ -1,21 +1,21 @@
 #include <time.h>
 
 // @param front, back
-struct shorts
+struct range
 {
-    short front{};
-    short back{};
+    long long front{};
+    long long back{};
 };
 
 // @param operator[] provide range using shorts struct
 class ransuu
 {
-    unsigned char m{1};
+    unsigned char m{0};
 public:
-    short operator[](shorts range) 
+    short operator[](range r) 
     {
-        short val = static_cast<short>(_time64(nullptr) % (++m));
-        (val < (-0x7fff - 1)) ? val = (-0x7fff - 1) : (0x7fff < val) ? val = 0x7fff : val;
-        return val % (range.back - range.front + 1) + range.front;
+        long long val = (_time64({}) ^ (++m << 4)) & 9223372036854775807ll-1;
+        (val < -9223372036854775807ll-1) ? val = -9223372036854775807ll-1 : (9223372036854775807ll < val) ? val = 9223372036854775807ll : val;
+        return val % (r.back - r.front + 1) + r.front;
     }
 };
