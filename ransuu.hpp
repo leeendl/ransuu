@@ -3,11 +3,10 @@
 // @param front, back
 struct range
 {
-    long long front{};
-    long long back{};
+    long long front{}, back{};
 };
 
-// @param operator[] provide range using shorts struct
+// @param operator[] provide range using range struct
 class ransuu
 {
     unsigned char m{0};
