@@ -16,7 +16,8 @@ public:
     // @param _range provide a min, max range of numbers e.g. {0, 100}
     long long operator[](range _range) 
     {
-        long long val{ (_time64({}) ^ (++m << 4)) & ll_max };
+        time_t t = _time64(nullptr);
+        long long val = (((localtime(&t)->tm_sec * 1000000ll) ^ (++m << 8))) & ll_max;
         (val < ll_min) ? val = ll_min : (ll_max < val) ? val = ll_max : val;
         return{ val % (_range.back - _range.front + 1) + _range.front };
     }
