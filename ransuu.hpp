@@ -1,4 +1,4 @@
-#include <time.h>
+#include <ctime>
 
 #define ll_max 9223372036854775807ll
 #define ll_min ll_max*(-1)
@@ -14,10 +14,10 @@ class ransuu
     unsigned char m{0};
 public:
     // @param _range provide a min, max range of numbers e.g. {0, 100}
-    long long operator[](range _range) 
+    long long operator[](const range& _range) 
     {
-        time_t t = _time64({});
-        long long val = (localtime(&t)->tm_sec * 1000000ll) ^ (++m << 8) & ll_max;
+        std::time_t t = std::time({});
+        long long val = (std::localtime(&t)->tm_sec * 1000000ll) ^ ((++m << 8) & ll_max);
         (val < ll_min + 1) ? 
             val = ll_min + 1 : 
         (ll_max < val) ? 
