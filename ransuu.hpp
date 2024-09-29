@@ -17,7 +17,7 @@ public:
     long long operator[](range _range) 
     {
         time_t t = _time64({});
-        long long val = (((localtime(&t)->tm_sec * 1000000ll) ^ (++m << 8))) & ll_max;
+        long long val = (localtime(&t)->tm_sec * 1000000ll) ^ (++m << 8) & ll_max;
         (val < ll_min + 1) ? 
             val = ll_min + 1 : 
         (ll_max < val) ? 
