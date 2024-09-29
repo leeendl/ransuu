@@ -3,6 +3,15 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: windows-latest
+    strategy:
+      matrix:
+        cpp_version: 
+	[
+	    c++14, 
+	    c++17, 
+	    c++20, 
+	    c++23
+    	]
     steps:
     - uses: actions/checkout@v4.2.0
     - uses: msys2/setup-msys2@v2.24.1
@@ -11,7 +20,7 @@ jobs:
         update: true
         install: mingw-w64-ucrt-x86_64-gcc
     - run: |
-        g++ -std=c++2b -g test.cpp -o test.exe
+        g++ -std=${{ matrix.cpp_version }} -g test.cpp -o test.exe
       shell: msys2 {0}
     - name: running test.exe
       run: timeout 10 ./test.exe
