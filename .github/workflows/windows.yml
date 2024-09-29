@@ -9,17 +9,10 @@ jobs:
       with:
         msystem: UCRT64
         update: true
-        install: mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-curl mingw-w64-ucrt-x86_64-jsoncpp
-    - uses: actions/cache@v4.0.2
-      with:
-        path: |
-          C:\msys64\var\cache\pacman\pkg
-          C:\msys64\var\lib\pacman\sync
-        key: ${{ runner.os }}-msys2-${{ hashFiles('**/pacman.conf') }}
-        restore-keys: |
-          ${{ runner.os }}-msys2-
+        install: mingw-w64-ucrt-x86_64-gcc
     - run: |
         g++ -std=c++2b -g test.cpp -o test.exe
       shell: msys2 {0}
-    - run: timeout 10 ./test.exe
+    - name: running test.exe
+      run: timeout 10 ./test.exe
       shell: msys2 {0}
