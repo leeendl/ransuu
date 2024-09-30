@@ -3,24 +3,14 @@
 #define ll_max 9223372036854775807ll
 #define ll_min ll_max*(-1)
 
-#if __cplusplus <= 201103L
-    #include <array>
-    using range = std::array<long long, 2>;
-#else
+#if __cplusplus == 201103L
+    #include <initializer_list>
+    using range = std::initializer_list<long long>;
+#elif __cplusplus > 201103L
 // @param front, back
 struct range
 {
-    range(long long front, long long back) : f(front), b(back) {};
-    long long front()
-    {
-        return this->f;
-    };
-    long long back()
-    {
-        return this->b;
-    };
-private:
-    long long f{}, b{};
+    long long front{}, back{};
 };
 #endif
 
@@ -37,6 +27,10 @@ public:
             val = ll_min + 1 : 
         (ll_max < val) ? 
             val = ll_max : val;
-        return{ val % (_range.back() - _range.front() + 1) + _range.front() };
+#if __cplusplus == 201103L
+        return{ val % (*(_range.begin() + 1) - *_range.begin() + 1) + *_range.begin() };
+#elif __cplusplus > 201103L
+        return{ val % (_range.back - _range.front + 1) + _range.front };
+#endif
     };
 };
