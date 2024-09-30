@@ -5,6 +5,7 @@
 
 #if __cplusplus <= 201103L
     #include <array>
+    using range = std::array<long long, 2>;
 #else
 // @param front, back
 struct range
@@ -28,11 +29,7 @@ class ransuu
     unsigned char m{0};
 public:
     // @param _range provide a min, max range of numbers e.g. {0, 100}
-#if __cplusplus <= 201103L
-    long long operator[](std::array<long long, 2> _range) 
-#else
     long long operator[](range _range) 
-#endif
     {
         std::time_t t = std::time({});
         long long val = (std::localtime(&t)->tm_sec * 1000000ll) ^ ((++m << 8) & ll_max);
