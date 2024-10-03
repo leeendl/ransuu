@@ -34,3 +34,6 @@ public:
 #endif
     };
 };
+
+#undef ll_max
+#undef ll_min
