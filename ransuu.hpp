@@ -31,9 +31,9 @@ public:
             (ll_max < val) ? 
                 val = ll_max : val;
             #if __cplusplus == 201103L
-                return static_cast<T>( val % (*(_range.begin() + 1) - *_range.begin() + 1) + *_range.begin() );
+                return static_cast<T>( val % (*(_range.begin() + 1) - *_range.begin()) + *_range.begin() );
             #elif __cplusplus > 201103L
-                return static_cast<T>( val % (_range.back - _range.front + 1) + _range.front );
+                return static_cast<T>( val % (_range.back - _range.front) + _range.front );
             #endif
         };
 };
