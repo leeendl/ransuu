@@ -12,7 +12,7 @@
 template<typename T>
 struct range
 {
-    long long front{}, back{};
+    T front{}, back{};
 };
 #endif
 
