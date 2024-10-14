@@ -27,14 +27,14 @@ public:
             struct timespec ts;
             clock_gettime(CLOCK_REALTIME, &ts);
             long long val = ts.tv_nsec ^ ((++m << 8) | (ts.tv_nsec >> 5));
-            (val < ll_min + 1) ? 
-                val = ll_min + 1 : 
+            (val < ll_min) ? 
+                val = ll_min : 
             (ll_max < val) ? 
                 val = ll_max : val;
             #if __cplusplus == 201103L
-                return static_cast<T>( val % (*(_range.begin() + 1) - *_range.begin()) + *_range.begin() );
+                return static_cast<T>( val % (*(_range.begin() + 1) - *_range.begin() + 1) + *_range.begin() );
             #elif __cplusplus > 201103L
-                return static_cast<T>( val % (_range.back - _range.front) + _range.front );
+                return static_cast<T>( val % (_range.back - _range.front + 1) + _range.front );
             #endif
         };
 };
