@@ -34,7 +34,7 @@ public:
             #if __cplusplus == 201103L
                 return static_cast<T>( val % (*(_range.begin() + 1) - *_range.begin() + 1) + *_range.begin() );
             #elif __cplusplus > 201103L
-                return static_cast<T>( val % ++(_range.back - _range.front) + _range.front );
+                return static_cast<T>( val % (++_range.back - _range.front) + _range.front );
             #endif
         };
 };
