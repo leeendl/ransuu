@@ -1,4 +1,4 @@
-#include <ctime>
+#include <pthread_time.h>
 
 #define ll_max 9223372036854775807ll
 #define ll_min ll_max*(-1)
@@ -24,8 +24,9 @@ public:
     template<typename T = long long>
         T operator[](range<T> _range) 
         {
-            std::time_t t = std::time({});
-            long long val = (std::localtime(&t)->tm_sec * 1000000ll) ^ ((++m << 8) & ll_max);
+            struct timespec ts;
+            clock_gettime(CLOCK_REALTIME, &ts);
+            long long val = ts.tv_nsec ^ ((++m << 8) | (ts.tv_nsec >> 5));
             (val < ll_min + 1) ? 
                 val = ll_min + 1 : 
             (ll_max < val) ? 
