@@ -25,7 +25,7 @@ public:
         {
             struct timespec ts;
             clock_gettime(CLOCK_REALTIME, &ts);
-            long long val = ts.tv_nsec ^ ( (3 << 8) | (ts.tv_nsec >> 5) );
+            long long val = ts.tv_nsec ^ ( 123 | (ts.tv_nsec >> 5) );
             (val < ll_min) ? val = ll_min : 
             (ll_max < val) ? val = ll_max : val;
             #if __cplusplus == 201103L
