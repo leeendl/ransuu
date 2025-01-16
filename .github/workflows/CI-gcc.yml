@@ -8,7 +8,7 @@ jobs:
         cpp_version: [ c++11, c++14, c++17, c++20, c++23, c++26 ]
     steps:
     - uses: actions/checkout@v4.2.0
-    - uses: msys2/setup-msys2@v2.24.1
+    - uses: msys2/setup-msys2@v2.26.0
       with:
         msystem: UCRT64
         update: true
