@@ -7,8 +7,8 @@ jobs:
       matrix:
         cpp_version: [ c++11, c++14, c++17, c++20, c++23, c++26 ]
     steps:
-    - uses: actions/checkout@v4.2.0
-    - uses: msys2/setup-msys2@v2.26.0
+    - uses: actions/checkout@85e6279cec87321a52edac9c87bce653a07cf6c2 # updated on Jan 16
+    - uses: msys2/setup-msys2@61f9e5e925871ba6c9e3e8da24ede83ea27fa91f # v2.27.0 
       with:
         msystem: UCRT64
         update: true
