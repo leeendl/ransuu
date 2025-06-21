@@ -17,13 +17,16 @@ struct range
 
 class ransuu
 {
+    struct timespec ts;
 public:
     template<typename T = long>
         T operator[](range<T> _range) 
         {
-            struct timespec ts;
-            clock_gettime(CLOCK_REALTIME, &ts);
-            long val = ts.tv_nsec ^ ( 123 | (ts.tv_nsec >> 5) );
+            clock_gettime(CLOCK_MONOTONIC, &this->ts);
+            long val = ts.tv_nsec 
+                ^ (ts.tv_nsec >> 5)
+                ^ (ts.tv_sec << 3);
+                
             (val < l_min) ? val = l_min : 
             (l_max < val) ? val = l_max : val;
             #if __cplusplus == 201103L
